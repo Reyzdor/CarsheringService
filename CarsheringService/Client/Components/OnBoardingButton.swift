@@ -5,16 +5,28 @@ struct OnBoardingButton: View {
     let action: () -> Void
     var backgroundColor: Color = .green
     var textColor: Color = .black
+    var showArrow: Bool = true
     
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(backgroundColor)
-                .foregroundColor(textColor)
-                .cornerRadius(15)
-                .font(.headline)
+            HStack {
+                Text(title)
+                    .font(.callout)
+                    .fontWeight(.regular)
+                
+                if showArrow {
+                    
+                    Image(systemName: "chevron.forward")
+                        .font(.caption)
+                        .fontWeight(.light)
+                    
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, minHeight: 50)
+            .background(backgroundColor)
+            .foregroundColor(textColor)
+            .cornerRadius(14)
         }
         .padding(.horizontal, 20)
     }

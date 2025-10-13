@@ -13,9 +13,10 @@ struct OnBoarding: View {
                 VStack {
                     HStack {
                         ForEach(0..<3, id:\.self) { index in
-                            Circle()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(currentPage == index ? .white : .gray)
+                            Capsule()
+                                .frame(width: currentPage == index ? 30 : 15, height: 8)
+                                .foregroundColor(currentPage == index ? .white : .gray.opacity(0.5))
+                                .animation(.spring(), value: currentPage)
                         }
                     }
                     .padding(.top, 60)
@@ -23,6 +24,7 @@ struct OnBoarding: View {
                     Spacer()
                     
                     Text("Бронируйте за две минуты")
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
@@ -32,12 +34,18 @@ struct OnBoarding: View {
                             currentPage = 1
                         },
                         backgroundColor: Color(red: 0.0, green: 1.0, blue: 0.0),
+                        showArrow: true
                     )
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 20)
+                    Text("Нажимая на кнопку, вы принимаете условия пользовательского соглашения и политики конфиденциальности")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 18)
+                        .frame(maxWidth: .infinity)
                 }
             }
             .tag(0)
-            .ignoresSafeArea(.all)
             
             ZStack {
                 Color(red: 0.75, green: 0.15, blue: 1.0)
@@ -46,9 +54,10 @@ struct OnBoarding: View {
                 VStack {
                     HStack {
                         ForEach(0..<3, id:\.self) { index in
-                            Circle()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(currentPage == index ? .white : .gray)
+                            Capsule()
+                                .frame(width: currentPage == index ? 30 : 15, height: 8)
+                                .foregroundColor(currentPage == index ? .white : .gray.opacity(0.5))
+                                .animation(.spring(), value: currentPage)
                         }
                     }
                     .padding(.top, 60)
@@ -56,6 +65,7 @@ struct OnBoarding: View {
                     Spacer()
                     
                     Text("Б1")
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
@@ -65,12 +75,19 @@ struct OnBoarding: View {
                             currentPage = 2
                         },
                         backgroundColor: Color(red: 0.0, green: 1.0, blue: 0.0),
+                        showArrow: true
                     )
-                    .padding(.bottom, 50)
+                   
+                    .padding(.bottom, 20)
+                    Text("Нажимая на кнопку, вы принимаете условия пользовательского соглашения и политики конфиденциальности")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 18)
+                        .frame(maxWidth: .infinity)
                 }
             }
             .tag(1)
-            .ignoresSafeArea(.all)
             
             ZStack {
                 Color(red: 0.75, green: 0.15, blue: 1.0)
@@ -79,9 +96,10 @@ struct OnBoarding: View {
                 VStack {
                     HStack {
                         ForEach(0..<3, id:\.self) { index in
-                            Circle()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(currentPage == index ? .white : .gray)
+                            Capsule()
+                                .frame(width: currentPage == index ? 30 : 15, height: 8)
+                                .foregroundColor(currentPage == index ? .white : .gray.opacity(0.5))
+                                .animation(.spring(), value: currentPage)
                         }
                     }
                     .padding(.top, 60)
@@ -89,21 +107,28 @@ struct OnBoarding: View {
                     Spacer()
                     
                     Text("FSDSDF")
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
                     OnBoardingButton(
-                        title: "Начать использование",
+                        title: "Начать пользоваться",
                         action: {
                             hasCompetedBoarding = true
                         },
                         backgroundColor: Color(red: 0.0, green: 1.0, blue: 0.0),
+                        showArrow: false
                     )
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 20)
+                    Text("Нажимая на кнопку, вы принимаете условия пользовательского соглашения и политики конфиденциальности")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 18)
+                        .frame(maxWidth: .infinity)
                 }
             }
             .tag(2)
-            .ignoresSafeArea(.all)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .ignoresSafeArea(.all)
