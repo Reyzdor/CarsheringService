@@ -2,23 +2,21 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var authManager: AuthManager
+    @State private var hasCompletedOnboarding = false
     
     var body: some View {
-        VStack {
-            if authManager.isLogin {
-                    
+        ZStack {
+            if !hasCompletedOnboarding {
+                OnBoarding(hasCompetedBoarding: $hasCompletedOnboarding)
+            } else if authManager.isLogin {
                 Button("Выйти") {
                     authManager.logout()
                 }
                 .padding()
             } else {
                 LoginView()
-                    .onAppear {
-                        print("🖥️ Показан экран входа")
-                    }
             }
         }
-        .padding()
     }
 }
 
