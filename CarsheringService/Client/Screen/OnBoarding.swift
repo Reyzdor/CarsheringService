@@ -23,8 +23,138 @@ struct OnBoarding: View {
                     
                     Spacer()
                     
-                    Text("Бронируйте за две минуты")
-                        .foregroundColor(.white)
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(red: 0.90, green: 0.30, blue: 1.0))
+                        .stroke(Color.white, lineWidth: 0)
+                        .frame(width: 350, height: 280)
+                        .offset(y: -20)
+                        .overlay(
+                            VStack(spacing: 10) {
+                                Circle()
+                                    .fill(Color(red: 0.0, green: 1.0, blue: 0.0))
+                                    .frame(width: 100, height: 90)
+                                    .overlay(
+                                        Image("pin2")
+                                            .resizable()
+                                            .offset(y: 3)
+                                            .frame(width: 50, height: 50)
+                                    )
+                                    .padding(10)
+                                
+                                Text("Найдите автомобиль рядом")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .multilineTextAlignment(.center)
+                                
+                                    .padding(10)
+                                
+                                Text("Тысячи автомобилей доступны в вашем городе.\nВыберите ближайший и отправляйтесь в путь!")
+                                    .font(.caption)
+                                    .foregroundColor(.white.opacity(0.9))
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(2)
+                                    .padding(.horizontal, 20)
+                            }
+                            .offset(y: -50)
+                        )
+                    
+                    HStack(spacing: 25){
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(red: 0.90, green: 0.30, blue: 1.0))
+                            .stroke(Color.white, lineWidth: 0)
+                            .frame(width: 100, height: 200)
+                            .overlay(
+                                VStack {
+                                    Image("security")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .offset(y: -30)
+                                        .foregroundColor(Color(red: 0.0, green: 1.0, blue: 0.0))
+                                    
+                                        .padding(10)
+
+                                    
+                                    Text("Безопасность")
+                                        .font(.caption)
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                        .offset(y: -20)
+                                    
+                                    Text("Автомобили\nзастрахованы")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(.white.opacity(0.7))
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(2)
+                                }
+                                
+                            )
+                        
+                        HStack(spacing: 25) {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(red: 0.90, green: 0.30, blue: 1.0))
+                                .stroke(Color.white, lineWidth: 0)
+                                .frame(width: 100, height: 200)
+                                .overlay(
+                                    VStack {
+                                        Image("star")
+                                            .renderingMode(.template)
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .offset(y: -30)
+                                            .foregroundColor(Color(red: 0.0, green: 1.0, blue: 0.0))
+                                        
+                                            .padding(10)
+
+                                        
+                                        Text("Качество")
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.center)
+                                            .offset(y: -20)
+                                        
+                                        Text("Проверенные\nавто")
+                                            .font(.system(size: 10))
+                                            .foregroundColor(.white.opacity(0.7))
+                                            .multilineTextAlignment(.center)
+                                            .lineLimit(2)
+                                    }
+                                )
+                        }
+                        
+                        HStack(spacing: 25) {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(red: 0.90, green: 0.30, blue: 1.0))
+                                .stroke(Color.white, lineWidth: 0)
+                                .frame(width: 100, height: 200)
+                                .overlay(
+                                    VStack {
+                                        Image("flash")
+                                            .renderingMode(.template)
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .offset(y: -30)
+                                            .foregroundColor(Color(red: 0.0, green: 1.0, blue: 0.0))
+                                            
+                                            .padding(10)
+                                        
+                                        Text("Быстро")
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.center)
+                                            .offset(y: -20)
+                                        
+                                        Text("Открытие за\n30 секунд")
+                                            .font(.system(size: 10))
+                                            .foregroundColor(.white.opacity(0.7))
+                                            .multilineTextAlignment(.center)
+                                            .lineLimit(2)
+                                        
+                                        
+                                    }
+                                )
+                        }
+                    }
                     
                     Spacer()
                     

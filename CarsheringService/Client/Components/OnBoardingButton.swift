@@ -4,7 +4,7 @@ struct OnBoardingButton: View {
     let title: String
     let action: () -> Void
     var backgroundColor: Color = .green
-    var textColor: Color = .black
+    var textColor: Color = Color(red: 0.10, green: 0.08, blue: 0.16)
     var showArrow: Bool = true
     
     var body: some View {
