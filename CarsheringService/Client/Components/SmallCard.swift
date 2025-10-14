@@ -21,12 +21,13 @@ struct SmallCardView: View {
                     
                     Text(title)
                         .font(.caption)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .offset(y: -20)
                     
                     Text(description)
-                        .font(.system(size: 10))
+                        .font(.system(size: 11, weight: .regular, design: .rounded))
                         .foregroundColor(.white.opacity(0.7))
                         .multilineTextAlignment(.center)
                         .lineLimit(2)

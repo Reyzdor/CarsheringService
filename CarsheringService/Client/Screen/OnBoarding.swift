@@ -76,8 +76,17 @@ struct OnBoarding: View {
                     
                     Spacer()
                     
-                    Text("Б1")
-                        .foregroundColor(.white)
+                    LargeCardView(
+                                iconName: "time",
+                                title: "Оплата по минутам",
+                                description: "Платите только за фактическое время\nиспользования. Гибкие тарифы для любых поездок"
+                            )
+                    
+                    MiddleCardView(
+                        titleTarif: "Примеры тарифов",
+                        types: ["Эконом", "Комфорт", "Бизнес"],
+                        prices: ["от 280₽/час", "от 350₽/час", "от 500₽/час"]
+                    )
                     
                     Spacer()
                     
@@ -118,8 +127,40 @@ struct OnBoarding: View {
                     
                     Spacer()
                     
-                    Text("FSDSDF")
-                        .foregroundColor(.white)
+                    LargeCardView(
+                                iconName: "bigflash",
+                                title: "Быстрое бронирование",
+                                description: "Мгновенное бронирование\nНикаких бумаг и ожидания, весь процесс в телефоне"
+                            )
+                    
+                    StripesOnBoardingView(
+                        iconName: "phone",
+                        title: "1. Выберите машину",
+                        description: "На карте или в списке",
+                        approved: "checkmark.circle.fill",
+                        circleColor: Color(red: 0.98, green: 0.45, blue: 0.09),
+                        iconColor: Color(.white)
+                    )
+                    
+                    StripesOnBoardingView(
+                        iconName: "card",
+                        title: "2. Подтвердить бронь",
+                        description: "Одним нажатием",
+                        approved: "checkmark.circle.fill",
+                        circleColor: Color(red: 0.0, green: 1.0, blue: 0.0),
+                        iconColor: Color(.black)
+
+                    )
+                    
+                    StripesOnBoardingView(
+                        iconName: "flash",
+                        title: "3. Садитесь и едьте",
+                        description: "За 30 секунд",
+                        approved: "checkmark.circle.fill",
+                        circleColor: Color(red: 0.58, green: 0.20, blue: 0.92),
+                        iconColor: Color(.white)
+
+                    )
                     
                     Spacer()
                     

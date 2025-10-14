@@ -25,12 +25,14 @@ struct LargeCardView: View {
                     
                     Text(title)
                         .font(.headline)
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(10)
                     
                     Text(description)
                         .font(.caption)
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
                         .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
