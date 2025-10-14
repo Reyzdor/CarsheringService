@@ -165,7 +165,7 @@ struct OnBoarding: View {
                     
                     StripesOnBoardingView(
                         iconName: "flash",
-                        title: "3. Садитесь и едьте",
+                        title: "3. Садитесь и наслаждайтесь",
                         description: "За 30 секунд",
                         approved: "checkmark.circle.fill",
                         circleColor: Color(red: 0.58, green: 0.20, blue: 0.92),
