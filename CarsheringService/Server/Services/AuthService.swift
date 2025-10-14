@@ -3,7 +3,7 @@ import Combine
 
 class AuthManager: ObservableObject {
     @Published var currentUser: User?
-    @Published var isLogin = false
+    @Published var isLoggedIn = false
     
     func register(email: String, password: String, name: String, phone: String) -> Bool {
         
@@ -15,7 +15,7 @@ class AuthManager: ObservableObject {
             
             if savedUser.email == email && savedUser.password == password {
                 currentUser = savedUser
-                isLogin = true
+                isLoggedIn = true
                 return true
             }
         }
@@ -25,7 +25,7 @@ class AuthManager: ObservableObject {
     
     func logout() {
         currentUser = nil
-        isLogin = false
+        isLoggedIn = false
     }
     
     func loadUser() -> User? {

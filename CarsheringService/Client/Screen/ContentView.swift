@@ -8,7 +8,7 @@ struct ContentView: View {
         ZStack {
             if !hasCompletedOnboarding {
                 OnBoarding(hasCompletedBoarding: $hasCompletedOnboarding)
-            } else if authManager.isLogin {
+            } else if authManager.isLoggedIn {
                 Button("Выйти") {
                     authManager.logout()
                 }
