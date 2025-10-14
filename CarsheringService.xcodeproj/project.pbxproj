@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3086AD752E9F10AB008FFDC2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3086AD742E9F10AB008FFDC2 /* Launch Screen.storyboard */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		301BBB672E9AB343007F8859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		301BBB592E9AB343007F8859 /* CarsheringService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarsheringService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301BBB662E9AB343007F8859 /* CarsheringServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarsheringServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		301BBB702E9AB343007F8859 /* CarsheringServiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarsheringServiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3086AD742E9F10AB008FFDC2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		301BBB502E9AB343007F8859 = {
 			isa = PBXGroup;
 			children = (
+				3086AD742E9F10AB008FFDC2 /* Launch Screen.storyboard */,
 				301BBB5B2E9AB343007F8859 /* CarsheringService */,
 				301BBB692E9AB343007F8859 /* CarsheringServiceTests */,
 				301BBB732E9AB343007F8859 /* CarsheringServiceUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3086AD752E9F10AB008FFDC2 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
