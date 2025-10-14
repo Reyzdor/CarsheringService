@@ -8,7 +8,7 @@ struct SmallCardView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(red: 0.90, green: 0.30, blue: 1.0))
-            .frame(width: 100, height: 200)
+            .frame(width: 100, height: 205)
             .overlay(
                 VStack {
                     Image(iconName)

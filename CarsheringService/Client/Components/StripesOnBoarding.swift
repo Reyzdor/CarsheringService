@@ -11,7 +11,7 @@ struct StripesOnBoardingView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(red: 0.90, green: 0.30, blue: 1.0))
-            .frame(width: 350, height: 64)
+            .frame(width: 350, height: 63)
             .overlay(
                 HStack(spacing: 15) {
                     Circle()

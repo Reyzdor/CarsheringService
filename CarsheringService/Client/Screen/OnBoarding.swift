@@ -130,7 +130,7 @@ struct OnBoarding: View {
                     LargeCardView(
                                 iconName: "bigflash",
                                 title: "Быстрое бронирование",
-                                description: "Мгновенное бронирование\nНикаких бумаг и ожидания, весь процесс в телефоне"
+                                description: "Мгновенное подтверждение бронирования.\nЦифровой процесс для вашего удобства"
                             )
                     
                     StripesOnBoardingView(
