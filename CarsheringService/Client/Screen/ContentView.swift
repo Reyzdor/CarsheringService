@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if !hasCompletedOnboarding {
-                OnBoarding(hasCompetedBoarding: $hasCompletedOnboarding)
+                OnBoarding(hasCompletedBoarding: $hasCompletedOnboarding)
             } else if authManager.isLogin {
                 Button("Выйти") {
                     authManager.logout()

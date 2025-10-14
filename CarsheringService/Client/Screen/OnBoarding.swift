@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct OnBoarding: View {
-    @Binding var hasCompetedBoarding: Bool
+    @Binding var hasCompletedBoarding: Bool
     @State private var currentPage = 0
     
     var body: some View {
@@ -19,9 +19,11 @@ struct OnBoarding: View {
                                 .animation(.spring(), value: currentPage)
                         }
                     }
+                    
                     .padding(.top, 60)
                     
                     Spacer()
+                
                     
                     LargeCardView(
                                 iconName: "pin2",
@@ -56,6 +58,11 @@ struct OnBoarding: View {
                         .padding(.horizontal, 18)
                         .frame(maxWidth: .infinity)
                 }
+                SkipOnBoardingView(
+                    text: "Пропустить",
+                    hasCompetedBoarding: $hasCompletedBoarding
+                )
+            
             }
             .tag(0)
             
@@ -107,6 +114,10 @@ struct OnBoarding: View {
                         .padding(.horizontal, 18)
                         .frame(maxWidth: .infinity)
                 }
+                SkipOnBoardingView(
+                    text: "Пропустить",
+                    hasCompetedBoarding: $hasCompletedBoarding
+                )
             }
             .tag(1)
             
@@ -167,7 +178,7 @@ struct OnBoarding: View {
                     OnBoardingButton(
                         title: "Начать пользоваться",
                         action: {
-                            hasCompetedBoarding = true
+                            hasCompletedBoarding = true
                         },
                         backgroundColor: Color(red: 0.0, green: 1.0, blue: 0.0),
                         showArrow: false
