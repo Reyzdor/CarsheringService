@@ -14,7 +14,7 @@ struct ContentView: View {
                 }
                 .padding()
             } else {
-                LoginView()
+                MainView() 
             }
         }
     }

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		301A46992EA172F700A5022C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A46982EA172F700A5022C /* Launch Screen.storyboard */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		301BBB672E9AB343007F8859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		301A46982EA172F700A5022C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		301BBB592E9AB343007F8859 /* CarsheringService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarsheringService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301BBB662E9AB343007F8859 /* CarsheringServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarsheringServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		301BBB702E9AB343007F8859 /* CarsheringServiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarsheringServiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +80,7 @@
 		301BBB502E9AB343007F8859 = {
 			isa = PBXGroup;
 			children = (
+				301A46982EA172F700A5022C /* Launch Screen.storyboard */,
 				301BBB5B2E9AB343007F8859 /* CarsheringService */,
 				301BBB692E9AB343007F8859 /* CarsheringServiceTests */,
 				301BBB732E9AB343007F8859 /* CarsheringServiceUITests */,
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 301BBB502E9AB343007F8859;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				304A97E62EA302080090ABE6 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 301BBB5A2E9AB343007F8859 /* Products */;
 			projectDirPath = "";
@@ -212,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				301A46992EA172F700A5022C /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +582,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		304A97E62EA302080090ABE6 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 301BBB512E9AB343007F8859 /* Project object */;
 }
