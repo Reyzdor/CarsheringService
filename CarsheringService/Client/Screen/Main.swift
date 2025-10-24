@@ -16,35 +16,20 @@ struct MainView: View {
             span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )
     )
-    
     @State private var selectedCar: Car?
     @State private var showCarDetails = false
     @State private var route: MKRoute?
-    
     let fakeUserLocation = CLLocationCoordinate2D(latitude: 55.71209, longitude: 37.51083)
-    
     @State private var cars: [Car] = {
         var cars: [Car] = []
         let brands = ["Changan UNI-T", "Chery Arrizo 8", "Haval H3", "Changan UNI-V", "Changan UNI-V"]
-        
         for i in 0..<5 {
             let latOffset = Double.random(in: -0.005...0.005)
             let lonOffset = Double.random(in: -0.005...0.005)
-            
-            let coordinate = CLLocationCoordinate2D(
-                latitude: 55.71209 + latOffset,
-                longitude: 37.51083 + lonOffset
-            )
-            
+            let coordinate = CLLocationCoordinate2D(latitude: 55.71209 + latOffset, longitude: 37.51083 + lonOffset)
             let fuelLevel = Double.random(in: 0.3...1.0)
-            
-            cars.append(Car(
-                coordinate: coordinate,
-                brand: brands[i],
-                fuelLevel: fuelLevel
-            ))
+            cars.append(Car(coordinate: coordinate, brand: brands[i], fuelLevel: fuelLevel))
         }
-        
         return cars
     }()
     
@@ -53,24 +38,13 @@ struct MainView: View {
             Map(position: $cameraPosition) {
                 ForEach(cars) { car in
                     Annotation("", coordinate: car.coordinate) {
-                        ZStack {
-                            Image(systemName: "car.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(car.isBooked ? .red : .blue)
-                            
-                            if car.isBooked {
-                                Circle()
-                                    .fill(Color.red.opacity(0.7))
-                                    .frame(width: 40, height: 40)
-                            }
-                        }
-                        .onTapGesture {
-                            handleCarTap(car)
-                        }
+                        Image(systemName: "car.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(car.isBooked ? .red : .blue)
+                            .onTapGesture { handleCarTap(car) }
                     }
                 }
-                
                 Annotation("", coordinate: fakeUserLocation) {
                     VStack {
                         Image(systemName: "figure.wave")
@@ -82,10 +56,8 @@ struct MainView: View {
                             .frame(width: 50, height: 50)
                     }
                 }
-                
                 if let route {
-                    MapPolyline(route.polyline)
-                        .stroke(.blue, lineWidth: 5)
+                    MapPolyline(route.polyline).stroke(.blue, lineWidth: 5)
                 }
             }
             .mapControls {
@@ -93,63 +65,46 @@ struct MainView: View {
                 MapCompass()
                 MapScaleView()
             }
-            
             if showCarDetails, let car = selectedCar {
-                VStack {
+                VStack(spacing: 0) {
                     Spacer()
-                    
                     CarDetailView(
                         car: car,
                         distance: route?.distance ?? 0,
                         travelTime: route?.expectedTravelTime ?? 0,
-                        onBook: {
-                            toggleBookCar(car)
-                        },
+                        onBook: { toggleBookCar(car) },
                         onClose: {
                             showCarDetails = false
                             selectedCar = nil
                             route = nil
                         }
                     )
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(16, corners: [.topLeft, .topRight])
+                    .frame(height: UIScreen.main.bounds.height * 0.33)
+                    .transition(.move(edge: .bottom))
                 }
+                .ignoresSafeArea(edges: .bottom)
             }
         }
+        .animation(.easeInOut(duration: 0.25), value: showCarDetails)
     }
     
     private func handleCarTap(_ car: Car) {
         selectedCar = car
         showCarDetails = true
-        
-        if route == nil || car.id != selectedCar?.id {
-            calculateRoute(to: car.coordinate)
-        }
+        calculateRoute(to: car.coordinate)
     }
     
     private func calculateRoute(to destination: CLLocationCoordinate2D) {
-        let sourceLocation = CLLocation(latitude: fakeUserLocation.latitude, longitude: fakeUserLocation.longitude)
-        let destinationLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
-        
-        let sourceItem = MKMapItem(location: sourceLocation, address: nil)
-        let destinationItem = MKMapItem(location: destinationLocation, address: nil)
-        
+        let sourceItem = MKMapItem(placemark: MKPlacemark(coordinate: fakeUserLocation))
+        let destItem = MKMapItem(placemark: MKPlacemark(coordinate: destination))
         let request = MKDirections.Request()
         request.source = sourceItem
-        request.destination = destinationItem
+        request.destination = destItem
         request.transportType = .walking
-        request.requestsAlternateRoutes = true
-        
-        let directions = MKDirections(request: request)
-        directions.calculate { response, error in
+        MKDirections(request: request).calculate { response, _ in
             if let route = response?.routes.first {
                 self.route = route
-                
-                let region = MKCoordinateRegion(
-                    center: route.polyline.coordinate,
-                    span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-                )
+                let region = MKCoordinateRegion(center: route.polyline.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
                 cameraPosition = .region(region)
             }
         }
@@ -157,12 +112,12 @@ struct MainView: View {
     
     private func toggleBookCar(_ car: Car) {
         if let index = cars.firstIndex(where: { $0.id == car.id }) {
+            let wasBooked = cars[index].isBooked
             cars[index].isBooked.toggle()
-            
-            if !cars[index].isBooked {
+            if wasBooked {
+                route = nil
                 showCarDetails = false
                 selectedCar = nil
-                route = nil
             }
         }
     }
@@ -174,120 +129,99 @@ struct CarDetailView: View {
     let travelTime: Double
     let onBook: () -> Void
     let onClose: () -> Void
+    @State private var isBookedState: Bool = false
     
     private func formatDistance(_ distance: Double) -> String {
-        if distance < 1000 {
-            return "\(Int(distance)) м"
-        } else {
-            return String(format: "%.1f км", distance / 1000)
-        }
+        distance < 1000 ? "\(Int(distance)) м" : String(format: "%.1f км", distance / 1000)
     }
-    
     private func formatTime(_ time: Double) -> String {
         let minutes = Int(time / 60)
-        if minutes < 60 {
-            return "\(minutes) мин"
-        } else {
-            let hours = minutes / 60
-            let remainingMinutes = minutes % 60
-            return "\(hours) ч \(remainingMinutes) мин"
-        }
+        return minutes < 60 ? "\(minutes) мин" : "\(minutes / 60) ч \(minutes % 60) мин"
     }
-    
-    private func fuelLevelColor(_ level: Double) -> Color {
+    private func fuelColor(_ level: Double) -> Color {
         switch level {
-        case 0.7...1.0:
-            return .green
-        case 0.3..<0.7:
-            return .orange
-        default:
-            return .red
+        case 0.7...1.0: return .green
+        case 0.3..<0.7: return .orange
+        default: return .red
         }
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .leading, spacing: 14) {
             HStack {
                 Text(car.brand)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
+                    .font(.title3.bold())
                 Spacer()
-                
                 Button(action: onClose) {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
                         .font(.title2)
+                        .foregroundColor(.gray)
                 }
             }
             
-            VStack(spacing: 16) {
-                HStack {
-                    Image(systemName: "fuelpump.fill")
-                        .foregroundColor(fuelLevelColor(car.fuelLevel))
-                    Text("Топливо: \(Int(car.fuelLevel * 100))%")
-                        .foregroundColor(fuelLevelColor(car.fuelLevel))
-                    Spacer()
-                }
-                
-                HStack {
-                    Image(systemName: "road.lanes")
-                        .foregroundColor(.blue)
-                    Text("Расстояние: \(formatDistance(distance))")
-                    Spacer()
-                }
-                
-                HStack {
-                    Image(systemName: "clock")
-                        .foregroundColor(.blue)
-                    Text("Время пути: \(formatTime(travelTime))")
-                    Spacer()
-                }
+            VStack(alignment: .leading, spacing: 8) {
+                Label("Топливо: \(Int(car.fuelLevel * 100))%", systemImage: "fuelpump.fill")
+                    .foregroundColor(fuelColor(car.fuelLevel))
+                Label("Расстояние: \(formatDistance(distance))", systemImage: "road.lanes")
+                    .foregroundColor(.blue)
+                Label("Время пути: \(formatTime(travelTime))", systemImage: "clock")
+                    .foregroundColor(.blue)
             }
+            .font(.body)
+            .padding(.top, 6)
             
-            Spacer()
-                .frame(height: 10)
-            
-            Button(action: onBook) {
-                Text(car.isBooked ? "Отменить бронирование" : "Забронировать")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(car.isBooked ? Color.orange : Color.blue)
+            Button(action: {
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    isBookedState.toggle()
+                }
+                onBook()
+            }) {
+                Text(isBookedState ? "Отменить бронирование" : "Забронировать")
+                    .font(.headline.bold())
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(isBookedState ? Color.orange : Color.blue)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .cornerRadius(14)
+                    .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
             }
+            .padding(.top, 10)
         }
-        .padding(.horizontal, 24)
-        .padding(.top, 24)
-        .padding(.bottom, 40)
+        .padding(20)
+        .frame(maxWidth: .infinity)
+        .background(
+            Rectangle()
+                .fill(Color(.systemBackground))
+                .cornerRadius(20, corners: [.topLeft, .topRight])
+                .shadow(color: .black.opacity(0.15), radius: 10, y: -4)
+        )
     }
 }
 
-extension View {
+private extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }
 
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
+private struct RoundedCorner: Shape {
+    var radius: CGFloat
+    var corners: UIRectCorner
     func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
         return Path(path.cgPath)
     }
 }
 
-extension MKMultiPoint {
-    var coordinates: [CLLocationCoordinate2D] {
-        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid, count: pointCount)
-        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
-        return coords
+struct RootView: View {
+    var body: some View {
+        MainView().ignoresSafeArea()
     }
 }
 
 #Preview {
-    MainView()
+    RootView()
 }
