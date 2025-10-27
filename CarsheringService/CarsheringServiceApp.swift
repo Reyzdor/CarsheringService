@@ -1,13 +1,14 @@
 import SwiftUI
 
 @main
-struct CarsheringServiceApp: App {
-    @StateObject var authManager = AuthManager()
-    
+struct CarsharingServiceApp: App {
+    let persistenceController = PersistenceController.shared
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(authManager)
+            MainView()
+                .environment(\.managedObjectContext, persistenceController.context)
+                .ignoresSafeArea()
         }
     }
 }
