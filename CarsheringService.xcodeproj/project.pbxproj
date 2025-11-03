@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		301A46992EA172F700A5022C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A46982EA172F700A5022C /* Launch Screen.storyboard */; };
+		3040CE0E2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0A2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift */; };
+		3040CE0F2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0B2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift */; };
+		3040CE102EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0D2EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift */; };
+		3040CE112EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0C2EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,10 @@
 		301BBB592E9AB343007F8859 /* CarsheringService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarsheringService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301BBB662E9AB343007F8859 /* CarsheringServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarsheringServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		301BBB702E9AB343007F8859 /* CarsheringServiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarsheringServiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3040CE0A2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookingEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3040CE0B2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookingEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3040CE0C2EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3040CE0D2EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +88,10 @@
 		301BBB502E9AB343007F8859 = {
 			isa = PBXGroup;
 			children = (
+				3040CE0A2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift */,
+				3040CE0B2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift */,
+				3040CE0C2EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift */,
+				3040CE0D2EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift */,
 				301A46982EA172F700A5022C /* Launch Screen.storyboard */,
 				301BBB5B2E9AB343007F8859 /* CarsheringService */,
 				301BBB692E9AB343007F8859 /* CarsheringServiceTests */,
@@ -246,6 +258,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3040CE0E2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift in Sources */,
+				3040CE0F2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift in Sources */,
+				3040CE102EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift in Sources */,
+				3040CE112EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
