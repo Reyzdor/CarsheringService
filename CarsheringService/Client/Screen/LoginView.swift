@@ -9,12 +9,12 @@ struct LoginView: View {
     @State private var showError = false
     @State private var errorMessage = ""
     
-    
     var body: some View {
         VStack(spacing: 20) {
             Text("Вход в каршеринг")
                 .font(.title)
                 .bold()
+            
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.emailAddress)
@@ -23,7 +23,6 @@ struct LoginView: View {
                 .textInputAutocapitalization(.never)
                 .textContentType(.emailAddress)
             
-            
             SecureField("Пароль", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .autocapitalization(.none)
@@ -31,15 +30,16 @@ struct LoginView: View {
                 .textInputAutocapitalization(.never)
                 .textContentType(.password)
             
-            Button("Войти") {
+            Button {
                 attemptLogin()
+            } label: {
+                Text("Войти")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .disabled(email.isEmpty || password.isEmpty)
             
-            .font(.caption)
-            .multilineTextAlignment(.center)
-            .foregroundColor(.gray)
         }
         .padding()
         .alert("Ошибка", isPresented: $showError) {
@@ -53,7 +53,7 @@ struct LoginView: View {
         let loginSuccess = authManager.login(email: email, password: password)
         
         if loginSuccess {
-            
+            authManager.isLoggedIn = true
         } else {
             errorMessage = "Неверный логин или пароль"
             showError = true

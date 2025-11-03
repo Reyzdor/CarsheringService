@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		301A46992EA172F700A5022C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301A46982EA172F700A5022C /* Launch Screen.storyboard */; };
-		3040CE0E2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0A2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift */; };
-		3040CE0F2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0B2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift */; };
-		3040CE102EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0D2EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift */; };
-		3040CE112EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040CE0C2EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,7 +113,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 301BBB7A2E9AB343007F8859 /* Build configuration list for PBXNativeTarget "CarsheringService" */;
 			buildPhases = (
-				301BBB552E9AB343007F8859 /* Sources */,
 				301BBB562E9AB343007F8859 /* Frameworks */,
 				301BBB572E9AB343007F8859 /* Resources */,
 			);
@@ -254,17 +249,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		301BBB552E9AB343007F8859 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3040CE0E2EAFDB6E0015C407 /* BookingEntity+CoreDataClass.swift in Sources */,
-				3040CE0F2EAFDB6E0015C407 /* BookingEntity+CoreDataProperties.swift in Sources */,
-				3040CE102EAFDB6E0015C407 /* UserEntity+CoreDataProperties.swift in Sources */,
-				3040CE112EAFDB6E0015C407 /* UserEntity+CoreDataClass.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		301BBB622E9AB343007F8859 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;

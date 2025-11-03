@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OnBoarding: View {
+struct OnBoardingView: View {
     @Binding var hasCompletedBoarding: Bool
     @State private var currentPage = 0
     

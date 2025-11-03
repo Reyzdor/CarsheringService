@@ -1,42 +1,48 @@
 import Foundation
-import Combine
+import CoreData
 
-class AuthManager: ObservableObject {
-    @Published var currentUser: User?
-    @Published var isLoggedIn = false
-    
-    func register(email: String, password: String, name: String, phone: String) -> Bool {
-        
-        return true
+final class AuthService {
+    private let context = CoreDataManager.shared.viewContext
+
+    func register(name: String, email: String, phone: String, password: String) throws -> UserEntity {
+        let req: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        req.predicate = NSPredicate(format: "email == %@", email.lowercased())
+
+        if let found = try context.fetch(req).first {
+            throw AuthError.emailAlreadyExists
+        }
+
+        let user = UserEntity(context: context)
+        user.id = UUID()
+        user.name = name
+        user.email = email.lowercased()
+        user.phone = phone
+        user.password = password
+        user.registrationDate = Date()
+
+        try context.save()
+        return user
     }
-    
-    func login(email: String, password: String) -> Bool {
-        if let savedUser = loadUser() {
-            
-            if savedUser.email == email && savedUser.password == password {
-                currentUser = savedUser
-                isLoggedIn = true
-                return true
+
+    func login(email: String, password: String) throws -> UserEntity {
+        let req: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        req.predicate = NSPredicate(format: "email == %@ AND password == %@", email.lowercased(), password)
+        if let user = try context.fetch(req).first {
+            return user
+        } else {
+            throw AuthError.invalidCredentials
+        }
+    }
+
+    enum AuthError: LocalizedError {
+        case emailAlreadyExists
+        case invalidCredentials
+
+        var errorDescription: String? {
+            switch self {
+            case .emailAlreadyExists: return "Пользователь с таким email уже существует."
+            case .invalidCredentials: return "Неверный email или пароль."
             }
         }
-        
-        return false
-    }
-    
-    func logout() {
-        currentUser = nil
-        isLoggedIn = false
-    }
-    
-    func loadUser() -> User? {
-        let testUser = User(
-                email: "test@mail.ru",
-                password: "123456",
-                name: "Иван Иванов",
-                phone: "+79991234567"
-            )
-        
-        return testUser
-        
     }
 }
